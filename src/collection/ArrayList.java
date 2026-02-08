@@ -29,6 +29,15 @@ public class ArrayList <E> {
             size--;
             return e;
         }
+        public boolean isEmpty() {
+            return size == 0;
+        }
+    @SuppressWarnings("unckecked")
+        public E get(int index) {
+        if(index<0 || index>size-1)
+            throw new IndexOutOfBoundsException("查询位置非法");
+        return (E)array[index];
+        }
         public String toString(){
             StringBuilder builder=new StringBuilder();
             for(int i=0;i<size;i++) builder.append(array[i]).append(",");
