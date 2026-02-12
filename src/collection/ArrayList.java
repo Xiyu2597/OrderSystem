@@ -6,7 +6,7 @@ public class ArrayList <E> {
     private Object[] array=new Object[capacity];
     public void add(E element, int index){
         if(index<0||index>size)
-            throw new IndexOutOfBoundsException("插入非法");
+            throw new IndexOutOfBoundsException("插入非法，正确插入方式应为");
         if(size>=capacity){
                 int newCapacity=capacity*(capacity>>1);
                 Object[] newArray=new Object[newCapacity];
@@ -19,11 +19,11 @@ public class ArrayList <E> {
         array[index]=element;
             size++;
         }
-        @SuppressWarnings("unckecked")
+        @SuppressWarnings("unchecked")
         public E remove(int index) {
             if (index < 0 || index > size - 1)
-                throw new IndexOutOfBoundsException("删除非法");
-            E e=(E) array[index];
+                throw new IndexOutOfBoundsException("删除非法，正确删除应为");
+            E e= (E) array[index];
             for (int i = index; i < size; i++)
                 array[i] = array[i + 1];
             size--;
@@ -32,7 +32,7 @@ public class ArrayList <E> {
         public boolean isEmpty() {
             return size == 0;
         }
-    @SuppressWarnings("unckecked")
+    @SuppressWarnings("unchecked")
         public E get(int index) {
         if(index<0 || index>size-1)
             throw new IndexOutOfBoundsException("查询位置非法");
