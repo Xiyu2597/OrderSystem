@@ -1,12 +1,9 @@
 package test3;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 //        try(FileReader reader=new FileReader("test.txt")){
 //            char[] str=new char[10];
 //            reader.read(str);
@@ -28,10 +25,26 @@ public class Main {
 //        }catch(IOException e) {
 //            e.printStackTrace();
 //        }
-        File file=new File("test");
-//        System.out.println(file.createNewFile());创建文件
-//        System.out.println(file.mkdir());创建目录
-//        System.out.println(file.mkdirs());创建一系列
-        System.out.println(file.delete());
+//        File file=new File("test");
+//    System.out.println(file.createNewFile());创建文件
+//       System.out.println(file.mkdir());创建目录
+//      System.out.println(file.mkdirs());创建一系列
+//        System.out.println(file.delete());
+        File source = new File("source");
+        for (File file : source.listFiles()) {
+          copyFile(file,"target/"+file.getName());
+        }
+    }
+    private static void copyFile(File file,String targetPath) {
+        try (InputStream in = new FileInputStream(file);
+            OutputStream out=new FileOutputStream(targetPath)){
+            byte[] bytes = new byte[1024 * 1024];
+        int len;
+        while ((len = in.read(bytes)) != -1) {
+            out.write(bytes,0,len);
+        }
+    }catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 }
